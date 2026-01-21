@@ -1,12 +1,24 @@
 package com.rodrigotamayoshi.dscommerce.dto;
 
 import com.rodrigotamayoshi.dscommerce.entities.Product;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 
 public class ProductDTO {
 
     private Long id;
+
+    @Size(min = 3, max = 80, message = "Nome precisa ter de 3 a 80 caracteres")
+    @NotBlank(message = "Campo requerido")
     private String name;
+
+    @Size(min = 10, message = "Descrição precisa ter no míinimo 10 caracteres")
+    @NotBlank(message = "Campo requerido")
     private String description;
+
+    @Positive(message = "O preço deve ser positvo")
     private Double price;
     private String imgUrl;
 
