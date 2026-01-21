@@ -32,5 +32,19 @@ public class ProductService {
         return result.map(x -> new ProductDTO(x));
     }
 
+    @Transactional // sem read only, faz alteração no banco
+    public ProductDTO insert(ProductDTO dto){
+
+        Product entity = new Product();
+        entity.setName(dto.getName());
+        entity.setDescription(dto.getDescription());
+        entity.setImgUrl(dto.getImgUrl());
+        entity.setPrice(dto.getPrice());
+
+        entity = repository.save(entity);
+
+        return new ProductDTO(entity);
+    }
+
 
 }
